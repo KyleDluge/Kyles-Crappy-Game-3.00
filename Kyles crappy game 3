@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Mar 19 15:56:46 2021
+
+@author: kyledluge
+"""
+
+import random
+
+print("Hello Welcome To Kyle's Crappy Game 3.0")
+print("Health = 50")
+print("Attack = 20")
+print("You have to destory a monster")
+print("you can either 'attack' the monster, or 'restore' health")
+print("good luck")
+
+
+
+
+health = 50
+enemy_health = 50
+enemy_attack = random.randint(5, 10)
+
+    
+
+while True and health >= 0:
+    command = input(">")
+    if command.lower() == "quit":
+        break
+   
+    while True and enemy_health >=0: #MONSTER NUMBER 1
+        if command == "attack":
+            attack = random.randint(1, 20)
+            enemy_attack = random.randint(5, 10)
+            print("you swing your sword")
+            print("The monsters takes a bite of your skull")
+            print("Damage dealt:", attack)
+            if attack >= 15:
+                print("CRITICAL HIT")
+            print("Damage received:", enemy_attack)
+            print("Your health:", health - enemy_attack)  
+            print("Monster health:", enemy_health - attack)
+            enemy_health = enemy_health - attack
+            health = health - enemy_attack
+            break
+        elif command == "restore":
+            restore = random.randint(1,20)
+            print("You gain", restore, "health. Your health is now", health + restore)
+            print("The monster restores 5 health")
+            enemy_health = enemy_health + 5
+            print("The monsters health is now", enemy_health)
+            health = health + restore
+            break
+        elif health <= 0:
+            print("you are dead idiot")
+            break
+        else:
+            print("not a valid command")
+            break
+    if enemy_health <=0:
+        print("congratulations, you defeated the monster")
+        print("you gain 15 health and 5 strength XP")
+        print(" Health = 65")
+        print("Attack = 25")
+        print("UH OH A FUCKING DRAGON APPEARS, BATTLE IT")
+        health = 65
+        break
+    if health <= 0:
+        print("you are dead idiot")
+        break
+
+
+health = 65
+dragon_health = 60
+
+while True and health >= 0:
+    command = input(">")
+    if command.lower() == "quit":
+        break
+
+    while True and health >= 0: #Monster number 2
+        if command == "attack":
+            attack = random.randint(1, 25) + 5
+            dragon_attack = random.randint(5, 15)
+            print("You swing your sword")
+            print("The Dragon breathes fire on your balls/ladyballs")
+            print("Damage dealt:", attack)
+            if attack >= 20:
+                print("CRITICAL HIT")
+            print("Damage received:", dragon_attack, "damage")
+            print("Your health:", health - dragon_attack)  
+            print("Dragon health:", dragon_health - attack)
+            dragon_health = dragon_health - attack
+            health = health - dragon_attack
+            break
+        elif command == "restore":
+            restore = random.randint(1,20)
+            print("You drink a healing potion and the monster recharges")
+            print("You gain:", restore)
+            print("The Dragon restores 5 health")
+            print("You health:", health + restore)
+            dragon_health = dragon_health + 5
+            print("Dragon health:", dragon_health)
+            health = health + restore
+            break
+        elif health <= 0:
+            print("you are dead idiot")
+            break
+        else:
+            print("not a valid command")
+            break
+    if dragon_health <=0:
+        print("you defeated the dragon!!!")
+        break
+    if health <= 0:
+        print("you are dead idiot")
+        break
+    
+
+        
+        
+            
+
+
+    
+    
+    
+    
+    
