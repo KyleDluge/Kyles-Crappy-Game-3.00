@@ -7,34 +7,81 @@ Created on Fri Mar 19 15:56:46 2021
 """
 
 import random
+import time
 
-print("Hello Welcome To Kyle's Crappy Game 3.0")
+
+
+username = input("Enter Username: ")
+print("Hello",username)
+print("Welcome To Kyle's Crappy Game 3.0")
+print("")
+time.sleep(1)
 print("Health = 50")
 print("Attack = 20")
+print("Gold = 5")
+time.sleep(1)
+instructions = print("""
+
+                     
+attack - attack enemy
+inventory - open inventory
+help - open instruction menu
+
+*type item name to equip or use item
+
+""")
+
 print("You have to destory a monster")
-print("you can either 'attack' the monster, or 'restore' health")
 print("good luck")
 
-
-
+inventory = {"sword",}
 
 health = 50
 enemy_health = 50
 enemy_attack = random.randint(5, 10)
+gold = 5
+sword = True
+shield = False
 
+def invent():
+    inventory = {}
+
+    if command.lower() == "inventory":
+        print(inventory)
+    if command.lower() == "sword":
+        print("sword is already equipped")
+    if command.lower() == "shield" and shield in inventory and sword is False:  
+        print("You equip the shield")
+    if command.lower() == "shield" and shield in inventory and sword is True:
+        print("shield is already equipped")
+    if command.lower() == "shield" and shield not in inventory:
+        print("you do not have that item")  
+            
+
+invent
+
+
+while True and health >= 0: # Monster Number 1
     
-
-while True and health >= 0:
     command = input(">")
+
     if command.lower() == "quit":
-        break
-   
-    while True and enemy_health >=0: #MONSTER NUMBER 1
-        if command == "attack":
+        break     
+    while True and enemy_health >=0: 
+        if command.lower() == "inventory":
+            print(inventory)
+            break
+        if command.lower() == "sword":
+            print("sword is already equipped")
+            break
+        if command.lower() == "attack":
             attack = random.randint(1, 20)
             enemy_attack = random.randint(5, 10)
-            print("you swing your sword")
+            print("You swing your sword")
+            time.sleep(1)
             print("The monsters takes a bite of your skull")
+            time.sleep(1)
+            print("")
             print("Damage dealt:", attack)
             if attack >= 15:
                 print("CRITICAL HIT")
@@ -44,27 +91,30 @@ while True and health >= 0:
             enemy_health = enemy_health - attack
             health = health - enemy_attack
             break
-        elif command == "restore":
-            restore = random.randint(1,20)
-            print("You gain", restore, "health. Your health is now", health + restore)
-            print("The monster restores 5 health")
-            enemy_health = enemy_health + 5
-            print("The monsters health is now", enemy_health)
-            health = health + restore
-            break
         elif health <= 0:
             print("you are dead idiot")
             break
-        else:
-            print("not a valid command")
-            break
+    else:
+        print("not a valid command")
+        break
     if enemy_health <=0:
+        golds = random.randint(1, 10)
         print("congratulations, you defeated the monster")
-        print("you gain 15 health and 5 strength XP")
-        print(" Health = 65")
+        print("")
+        print("+15 Health")
+        print("+5 attack xp")
+        print("+",golds, "gold")
+        print("")
+        print("Health = 65")
         print("Attack = 25")
+        gold = gold + golds
+        print("Gold =", gold)
+        print("restore potion has been added to your inventory")
+        time.sleep(3)
+        print("")
         print("UH OH A FUCKING DRAGON APPEARS, BATTLE IT")
         health = 65
+        inventory.add("restore potion")
         break
     if health <= 0:
         print("you are dead idiot")
@@ -80,11 +130,25 @@ while True and health >= 0:
         break
 
     while True and health >= 0: #Monster number 2
+        if command.lower() == "inventory":
+            print(inventory)
+            break
+        if command.lower() == "sword" and sword is True: 
+            print("sword is already equiped")
+            break
+        if command.lower() == "shield" and shield in inventory and sword is False:  
+            print("You equip the shield")
+            break
+        if command.lower() == "shield" and shield in inventory and sword is True:
+            print("shield is already equipped")
+        if command.lower() == "shield" and shield not in inventory:
+            print("you do not have that item")
         if command == "attack":
             attack = random.randint(1, 25) + 5
             dragon_attack = random.randint(5, 15)
             print("You swing your sword")
             print("The Dragon breathes fire on your balls/ladyballs")
+            print("'")
             print("Damage dealt:", attack)
             if attack >= 20:
                 print("CRITICAL HIT")
@@ -94,15 +158,13 @@ while True and health >= 0:
             dragon_health = dragon_health - attack
             health = health - dragon_attack
             break
-        elif command == "restore":
-            restore = random.randint(1,20)
-            print("You drink a healing potion and the monster recharges")
-            print("You gain:", restore)
-            print("The Dragon restores 5 health")
-            print("You health:", health + restore)
-            dragon_health = dragon_health + 5
-            print("Dragon health:", dragon_health)
+        elif command == "restore potion":
+            restore = random.randint(10,20)
+            print("You drink the restore restore potion")
+            print("You gain:", restore, "Health")
+            print("Your health:", health + restore)
             health = health + restore
+            inventory.remove("restore potion")
             break
         elif health <= 0:
             print("you are dead idiot")
@@ -111,20 +173,128 @@ while True and health >= 0:
             print("not a valid command")
             break
     if dragon_health <=0:
+        golds = random.randint(1,10)
         print("you defeated the dragon!!!")
+        print("")
+        print("+ 15 HP")
+        print("+5 ATK")
+        print("+", golds, "gold")
+        print("")
+        time.sleep(1)
+        print("Health = 80")
+        print("Attack = 30")
+        gold = gold +golds
+        print("Gold=", gold)
+        time.sleep(1)
+        print("")
+        print("The dragon drops a shield!")
+        print("shield has been added to your inventory")
+        time.sleep(1)
+        print("restore potion has been added to your inventory")
+        health = 80
+        inventory.add("shield")
+        shield = False
+        inventory.add("restore potion")
         break
     if health <= 0:
         print("you are dead idiot")
         break
-    
 
+    
+print("would you like to continue?")
+print("- yes")
+print("- no")
+
+store = True
+while store is True:
+    command = input(">")
+    if command.lower() == "yes":
+        print("You walk along and find a roadside store")
+        print("A man has a few items set up on a table")
+        print(""" 
+              - restore potion : 5 gold
+              - bread : 5 gold
+              - evil spear : 10 gold
+              - sexy sword : 15 gold
+              - exit
+              """)
+    elif command.lower() == "restore potion" and gold >= 5:
+        print("restore potion has been added to your inventory")
+        gold = gold - 5
+        print("you have", gold, "gold")
+        inventory.add("restore potion")  
+    elif command.lower() == "bread" and gold >= 5:
+        print("bread has been added to your inventory")
+        gold = gold - 5
+        print("you have", gold, "gold")
+        inventory.add("bread")
+    elif command.lower() == "evil spear" and gold >= 10:
+        print("evil spear has been added to your inventory")
+        gold = gold - 10
+        print("you have", gold, "gold")
+        inventory.add("evil spear")
+    elif command.lower() == "sexy sword" and gold >= 15:
+        print("sexy sword has been added to your inventory")
+        gold = gold - 15
+        print("you have", gold, "gold")
+        inventory.add("sexy sword")
+    elif command.lower() == "inventory":
+            print(inventory)
+    elif command.lower() == "exit" or "continue":
+        print("you exit the store and continue down the trail")
+        store = False
+        
+    else:      
+        print("you do not have enough gold")
+        print(""" 
+              - restore potion : 5 gold
+              - bread : 5 gold
+              - evil spear : 10 gold
+              - sexy sword : 15 gold
+              - exit
+              """)
+              
+time.sleep(1)
+
+print("you come up to a fork in the road")
+print("""
+      - right
+      - left
+
+      
+      
+      """)
+
+fork = True
+bear_health = 25
+while fork is True:
+    command = input(">")
+    if command == "right":
+        gambler = True
+        battle = False
+        print("You come across a man with some dice")
+        print("He wants to play a gambling game")
+        time.sleep(1)
+        print("")
+        print("How much would you like to bet?")
+        print("Gold = ", gold)
+    if gambler is True and command is int(gold) in gold:
+
+        print("The Gamble rolls his dice")
+    if command == "left":
+        gambler = False
+        battle = True
+        print("A bear ambushes you")
+        health = health - 10
+        print("Health = ", health)
+      
         
         
-            
 
 
-    
-    
+
+
+
     
     
     
